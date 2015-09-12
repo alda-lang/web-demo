@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- polyfill -->
+		<script src="MIDI.js/inc/shim/Base64.js"></script>
+		<script src="MIDI.js/inc/shim/Base64binary.js"></script>
+		<script src="MIDI.js/inc/shim/WebAudioAPI.js"></script>
+		<!-- MIDI.js package -->
+		<script src="MIDI.js/js/midi/audioDetect.js"></script>
+		<script src="MIDI.js/js/midi/gm.js"></script>
+		<script src="MIDI.js/js/midi/loader.js"></script>
+		<script src="MIDI.js/js/midi/plugin.audiotag.js"></script>
+		<script src="MIDI.js/js/midi/plugin.webaudio.js"></script>
+		<script src="MIDI.js/js/midi/plugin.webmidi.js"></script>
+		<!-- utils -->
+		<script src="MIDI.js/js/util/dom_request_xhr.js"></script>
+		<script src="MIDI.js/js/util/dom_request_script.js"></script>
+
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<form>
+			<p><input type="text" value="" /></p>
+			<p><input type="submit" value="Play!" /></p>
+			<p><textarea placeholder="debug info"></textarea></p>
+		</form>
+
+		<script src="js/player.js"></script>
+
+		<script>
+		MIDI.loadPlugin({
+			soundfontUrl: "midi-js-soundfonts/FluidR3_GM/",
+			instrument: "acoustic_grand_piano",
+			onprogress: function(state, progress) {
+				console.log(state, progress);
+			},
+			onsuccess: function() {
+				player.play();
+			}
+		});
+		</script
+	</body>
+</html>
