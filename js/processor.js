@@ -122,7 +122,7 @@
 
 		_playNote: function(pitch, time, attributes) {
 			var delay = this._durationToSec(attributes) * attributes.quantization;
-			var velocity = Math.round(127 * attributes.volume);
+			var velocity = Math.round(127 * attributes.volume * attributes["track-volume"]);
 
 			var key = pitch[0].toUpperCase() + attributes.octave
 			if (!(key in MIDI.keyToNote)) {
