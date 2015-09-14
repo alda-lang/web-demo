@@ -25,19 +25,9 @@
 			<p><textarea placeholder="debug info"></textarea></p>
 		</form>
 
+		<script src="js/log.js"></script>
+		<script src="js/processor.js"></script>
 		<script src="js/player.js"></script>
-
-		<script>
-		MIDI.loadPlugin({
-			soundfontUrl: "https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/master/FluidR3_GM/",
-			instrument: "acoustic_grand_piano",
-			onprogress: function(state, progress) {
-				console.log(state, progress);
-			},
-			onsuccess: function() {
-				player.play();
-			}
-		});
-		</script
+		<script src="js/app.js"></script>
 	</body>
 </html>
