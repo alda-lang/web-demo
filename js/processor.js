@@ -103,9 +103,16 @@
 		_processDuration: function(data) {
 			var duration = 0;
 			for (var i=1;i<data.length;i++) {
-				duration += 1/this._processNumber(data[i][1]);
+				duration += this._processNoteLength(data[i]);
 			}
 			return duration;
+		},
+
+		_processNoteLength: function(data) {
+			var dots = (data.length > 2 ? data[2][1].length : 0);
+			var multiplier = 0;
+			for (var i=0;i<=dots;i++) { multiplier += 1/(1 << i); }
+			return multiplier/this._processNumber(data[1]);
 		},
 
 		_durationToSec: function(attributes) {
