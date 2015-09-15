@@ -2,8 +2,15 @@
 	var input = document.querySelector("input[type=text]");
 
 	var go = function() {
-		var score = processor.process(input.value);
-		player.play(score);
+		try {
+			var parsed = alda_cljs.parser.parse(input.value);
+		} catch (e) {
+			log.error(e.message);
+			return;
+		}
+
+		var score = processor.process(parsed);
+		if (score) { player.play(score); }
 	}
 
 	document.querySelector("form").addEventListener("submit", function(e) {
@@ -11,12 +18,5 @@
 		go();
 	});
 
-	var xhr = new XMLHttpRequest();
-	xhr.open("get", "data.json", true);
-	xhr.send();
-	xhr.onload = function(e) {
-		input.value = e.target.responseText;
-		go();
-	}
-
+	go();
 })();

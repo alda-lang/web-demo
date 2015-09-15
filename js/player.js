@@ -51,11 +51,12 @@
 		},
 
 		_playPart: function(part, index) {
+			var globalDelay = 1; // FIXME delay the playback a bit to offset the CPU load when processing instruments
 			MIDI.programChange(index, part.instrument);
 
 			part.notes.forEach(function(note) {
-				MIDI.noteOn(0, note.note, note.velocity, note.time);
-				MIDI.noteOff(0, note.note, note.time + note.delay);
+				MIDI.noteOn(0, note.note, note.velocity, note.time + globalDelay);
+				MIDI.noteOff(0, note.note, note.time + note.delay + globalDelay);
 			});
 		}
 	}

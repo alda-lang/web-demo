@@ -2,15 +2,8 @@
 	var processor = {
 		_result: {},
 
-		process: function(str) {
+		process: function(data) {
 			log.clear();
-			try {
-				var data = JSON.parse(str);
-				log.log("successfully parsed input data");
-			} catch (e) {
-				log.error(e.message);
-				return;
-			}
 
 			if (data[0] != "score") {
 				log.error("first token is not 'score'");
@@ -27,7 +20,7 @@
 
 			var attributes = {
 				tempo: 120,
-				duration: 1,
+				duration: 1/4,
 				octave: 4,
 				quantization: 0.9,
 				volume: 1,
