@@ -8,7 +8,7 @@
 			log.error(e.message);
 			return;
 		}
-console.log(parsed);
+
 		var score = processor.process(parsed);
 		if (score) { player.play(score); }
 	}
