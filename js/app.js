@@ -4,13 +4,22 @@
 	var go = function() {
 		try {
 			var parsed = alda_cljs.parser.parse(input.value);
+			if (!(parsed instanceof Array)) {
+				var parts = parsed.reason.map(function(reason) {
+					return "expecting " + reason.expecting;
+				});
+				throw new Error(parts.join(", "));
+			}
 		} catch (e) {
 			log.error(e.message);
 			return;
 		}
 
 		var score = processor.process(parsed);
-		if (score) { player.play(score); }
+		if (score) { 
+			location.hash = input.value;
+			player.play(score);
+		}
 	}
 
 	document.querySelector("form").addEventListener("submit", function(e) {
@@ -18,5 +27,6 @@
 		go();
 	});
 
+	input.value = (location.hash ? location.hash.substring(1) : "piano: c d e f");
 	go();
 })();

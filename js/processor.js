@@ -103,7 +103,10 @@
 		_processDuration: function(data) {
 			var duration = 0;
 			for (var i=1;i<data.length;i++) {
-				duration += this._processNoteLength(data[i]);
+				var item = data[i];
+				if (item[0] == "note-length") { /* ignore barlines */
+					duration += this._processNoteLength(item);
+				}
 			}
 			return duration;
 		},
