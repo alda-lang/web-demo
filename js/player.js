@@ -51,7 +51,7 @@
 		},
 
 		_playPart: function(part, index) {
-			var globalDelay = 1; // FIXME delay the playback a bit to offset the CPU load when processing instruments
+			var globalDelay = 0.5; // FIXME delay the playback a bit to offset the CPU load when processing instruments
 			MIDI.programChange(index, part.instrument);
 
 			part.notes.forEach(function(note) {
