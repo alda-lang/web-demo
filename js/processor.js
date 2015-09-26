@@ -5,8 +5,6 @@
 		_divisions: 32, /* MusicXML <divisions> */
 
 		process: function(data) {
-			log.clear();
-
 			if (data[0] != "score") {
 				log.error("first token is not 'score'");
 				return;
@@ -159,6 +157,11 @@
 					var durationNode = this.xml.createElement("duration");
 					clone.appendChild(durationNode);
 					durationNode.textContent = this._divisions*4/item.length;
+					
+					for (var i=0;i<item.dots;i++) {
+						var dotNode = this.xml.createElement("dot");
+						clone.appendChild(dotNode);
+					}
 
 					measureNode.appendChild(clone);
 				}, this);
@@ -195,8 +198,12 @@
 					clone.appendChild(durationNode);
 					durationNode.textContent = this._divisions*4/item.length;
 
-					measureNode.appendChild(clone);
+					for (var i=0;i<item.dots;i++) {
+						var dotNode = this.xml.createElement("dot");
+						clone.appendChild(dotNode);
+					}
 
+					measureNode.appendChild(clone);
 				}, this);
 			} else {
 				playTime = this._durationToSec(attributes.duration, 0, attributes);

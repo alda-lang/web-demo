@@ -2,6 +2,8 @@
 	var input = document.querySelector("input[type=text]");
 
 	var go = function() {
+		log.clear();
+
 		try {
 			var parsed = alda_cljs.parser.parse(input.value);
 			if (!(parsed instanceof Array)) {
