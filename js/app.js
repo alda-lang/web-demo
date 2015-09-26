@@ -19,6 +19,13 @@
 		if (score) { 
 			location.hash = input.value;
 			player.play(score);
+			
+			var ser = new XMLSerializer();
+			var str = ser.serializeToString(processor.xml);
+			var blob = new Blob([str]);
+
+			var link = document.querySelector("a");
+			link.href = URL.createObjectURL(blob);
 		}
 	}
 
@@ -27,6 +34,6 @@
 		go();
 	});
 
-	input.value = (location.hash ? location.hash.substring(1) : "piano: c d e f");
+	input.value = (location.hash ? decodeURIComponent(location.hash.substring(1)) : "piano: c d e f");
 	go();
 })();
