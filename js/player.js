@@ -4,7 +4,7 @@
 			var instruments = this._getInstruments(score);
 
 			MIDI.loadPlugin({
-				soundfontUrl: "https://raw.githubusercontent.com/gleitz/midi-js-soundfonts/master/FluidR3_GM/",
+				soundfontUrl: "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/",
 				instrument: instruments,
 				onprogress: function(state, progress) {
 					log.log("instrument progress", state, progress);
